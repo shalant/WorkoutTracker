@@ -7,21 +7,19 @@ const db = require("./models");
 
 const app = express();
 
-app.use(logger("dev"));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/exercisedb", { useNewUrlParser: true });
 
 // add exercises to a previous workout plan
 
-app.post("/exercise", (req, res) => {
- //use the req off the body to create post
-    db.Exercise.
-})
+// app.post("/exercise", (req, res) => {
+//  //use the req off the body to create post
+//     db.Exercise.
+// })
     
 
 
