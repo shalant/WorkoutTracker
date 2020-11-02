@@ -3,6 +3,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// setup a schema for the DB
 const WorkoutSchema = new Schema({
 
     day: {
@@ -50,6 +51,7 @@ const WorkoutSchema = new Schema({
 
 );
 
+//calculate duration
 WorkoutSchema.virtual("totalDuration").get(function() {
     const total = 0;
 

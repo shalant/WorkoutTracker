@@ -12,6 +12,7 @@ module.exports = function(app) {
             });
     });
 
+    //read list of workouts
     app.get("/api/workouts", (req, res) => {
         db.Workout.find({})
         .then(data => {
@@ -22,6 +23,7 @@ module.exports = function(app) {
         });
     });
 
+    //
     app.get("/api/workout/:id", (req, res) => {
         db.Workout.find(
             {
@@ -36,6 +38,7 @@ module.exports = function(app) {
         });
     });
 
+    //create new workout
     app.post("/api/workouts", (req, res) => {
         db.Workout.create({
         day: Date.now()
@@ -49,6 +52,7 @@ module.exports = function(app) {
         });
     });
 
+    //update workout
     app.put("/api/workouts/:id", (req,res) => {
         console.log(req)
         db.Workout.update(
@@ -69,80 +73,3 @@ module.exports = function(app) {
     });
 
 }
-
-
-
-// //------------------------
-
-// const router = require("express").Router();
-// const Workout = require("../models/workout");
-
-// // add field for total duration and send to index.html to display most recent
-// router.get("/api/workouts", (req, res) => {
-//     Workout.aggregate([{
-//         $addFields: {
-//             totalDuration: { $sum: "$exercises.duration"}
-//         }
-//     }]).then(dbWorkouts => {
-//         res.json(dbWorkouts);
-//     }).catch(err => {
-//         res.status(400).json(err);
-//     });
-// });
-
-// // create new workout
-// router.post("/api/workouts", ({body}, res) => {
-//     Workout.create(body).then(dbWorkout => {
-//         res.json(dbWorkout);
-//     })
-//     .catch(err => {
-//         res.status(400).json(err);
-//     })
-// });
-
-// //add exercises to a workout
-// router.put("/api/workouts/:id", (req, res) => {
-//     let id = req.params.id;
-//     Workout.findOneAndUpdate(
-//         { _id: id },
-//         { $push:
-//             {exercises: req.body}
-//         },
-//         { new: false }
-//     ).then(updated => {
-//         res.json(updated);
-//     }).catch(err => {
-//         res.status(400).json(err);
-//     });
-// });
-   
-// //sends data to stat.html
-// router.get("api/workouts/range", (req, res) => {
-//     Workout.find({})
-//     .then(dbRange => {
-//         res.json(dbRange);
-//     })
-//     .catch(err => {
-//         res.status(400).json(err);
-//         console.log("Could not find range");
-//     });
-// });
-
-
-// //--------------------------
-
-// // // /api/blah
-
-// // const { db } = require("../models/workout")
-// // //const Whatever = require('./Whatever')
-
-// // // api/stats, api/exercise?, api/exercise
-
-
-// // //db.workout.create
-
-// // app.post('/api/endpoint', (req, res) =>{
-// //     const data = req.body
-// //     db.Whatever.create(data, function(err, whatever))
-
-// // })
